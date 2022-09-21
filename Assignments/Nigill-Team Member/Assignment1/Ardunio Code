@@ -1,1 +1,30 @@
-
+CODE :
+int Buzzer= 3;
+int Temperature_sensor= A3; 
+int PIR= A2; 
+int val1= 0; 
+int val2= 0;
+void setup() {
+pinMode(Buzzer, OUTPUT);
+pinMode(Temperature_sensor, INPUT);
+pinMode(PIR, INPUT);
+Serial.begin(9600);
+}
+void loop() {
+val1 = analogRead(PIR);
+val2 = analogRead(Temperature_sensor);
+float temp = ( val2/1024.0)*5000;
+float cel = temp/10;
+if(val1 == HIGH)
+{
+  digitalWrite(Buzzer, HIGH); 
+}
+else if(cel > 60)
+{
+  digitalWrite(Buzzer,HIGH);
+}
+else 
+{
+  digitalWrite(Buzzer, LOW);
+}
+}
